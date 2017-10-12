@@ -54,4 +54,9 @@ public class Subject {
     public void setTeachers(List<Teacher> teachers) {
         this.teachers = teachers;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

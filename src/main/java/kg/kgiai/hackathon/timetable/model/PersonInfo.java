@@ -38,4 +38,9 @@ public class PersonInfo {
     public void setMiddleName(String middleName) {
         this.middleName = middleName;
     }
+
+    @Override
+    public String toString() {
+        return name;
+    }
 }

@@ -7,24 +7,24 @@ import java.util.Date;
 public class Timetable {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private String day;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "room_id", referencedColumnName = "id")
     private Room room;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne()
     @JoinColumn(name = "teacher_id", referencedColumnName = "id")
     private Teacher teacher;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Gruppa gruppa;
 
@@ -86,4 +86,6 @@ public class Timetable {
     public void setTime(Date time) {
         this.time = time;
     }
+
+
 }

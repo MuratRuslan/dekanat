@@ -15,9 +15,6 @@ public class Gruppa {
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
-    @OneToMany(mappedBy = "gruppa")
-    private List<Student> students;
-
     public Gruppa(){}
 
     public Gruppa(Long id, String name) {
@@ -41,11 +38,8 @@ public class Gruppa {
         this.id = id;
     }
 
-    public List<Student> getStudents() {
-        return students;
-    }
-
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    @Override
+    public String toString() {
+        return name;
     }
 }

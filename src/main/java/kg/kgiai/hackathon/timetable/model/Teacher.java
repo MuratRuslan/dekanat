@@ -59,4 +59,9 @@ public class Teacher {
     public void setMiddleName(String middleName) {
         personInfo.setMiddleName(middleName);
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }

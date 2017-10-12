@@ -67,4 +67,9 @@ public class Student {
     public void setMarks(List<Mark> marks) {
         this.marks = marks;
     }
+
+    @Override
+    public String toString() {
+        return getName();
+    }
 }
