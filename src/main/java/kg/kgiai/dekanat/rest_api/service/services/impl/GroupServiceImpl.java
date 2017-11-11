@@ -2,50 +2,25 @@ package kg.kgiai.dekanat.rest_api.service.services.impl;
 
 import kg.kgiai.dekanat.rest_api.model.Gruppa;
 import kg.kgiai.dekanat.rest_api.repository.GruppaRepository;
+import kg.kgiai.dekanat.rest_api.service.services.AbstractService;
 import kg.kgiai.dekanat.rest_api.service.services.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.NotSupportedException;
 import java.util.List;
 
 @Service
-public class GroupServiceImpl implements GroupService {
+public class GroupServiceImpl extends AbstractService<Gruppa, Long> implements GroupService {
 
     @Autowired
-    private GruppaRepository gruppaRepository;
-
-    @Override
-    public List<Gruppa> getAll() {
-        return gruppaRepository.findAll();
-    }
-
-    @Override
-    public Gruppa getById(Long id) {
-        return gruppaRepository.findOne(id);
+    public GroupServiceImpl(JpaRepository<Gruppa, Long> repository) {
+        super(repository);
     }
 
     @Override
     public Gruppa getByName(String name) {
-        return gruppaRepository.findByName(name);
-    }
-
-    @Override
-    public void save(Gruppa object) {
-        gruppaRepository.save(object);
-    }
-
-    @Override
-    public void save(Iterable<Gruppa> iterable) {
-        gruppaRepository.save(iterable);
-    }
-
-    @Override
-    public void delete(Iterable<Gruppa> iterable) {
-        gruppaRepository.delete(iterable);
-    }
-
-    @Override
-    public void delete(Long id) {
-        gruppaRepository.delete(id);
+        return ((GruppaRepository) repository).findByName(name);
     }
 }

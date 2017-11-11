@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-public abstract class AbstractController<M, ID> {
+public abstract class AbstractRestController<M, ID> {
     protected Service<M, ID> service;
 
     @Autowired
-    public AbstractController(Service<M, ID> service) {
+    public AbstractRestController(Service<M, ID> service) {
         this.service = service;
     }
 

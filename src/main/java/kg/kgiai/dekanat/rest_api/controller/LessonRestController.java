@@ -13,10 +13,10 @@ import java.util.List;
 @RestController
 @RequestMapping("lessons")
 @CrossOrigin(value = "http://localhost:4200")
-public class LessonController extends AbstractController<Timetable, Long> {
+public class LessonRestController extends AbstractRestController<Timetable, Long> {
 
     @Autowired
-    public LessonController(Service<Timetable, Long> service) {
+    public LessonRestController(Service<Timetable, Long> service) {
         super(service);
     }
 

@@ -1,6 +1,8 @@
 package kg.kgiai.dekanat.rest_api.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -9,6 +11,8 @@ public class Mark {
     @Id
     @GeneratedValue
     private Long id;
+
+    @JsonIgnore
     @ManyToOne()
     @JoinColumn(name = "student_id")
     private Student student;

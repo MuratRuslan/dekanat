@@ -2,50 +2,25 @@ package kg.kgiai.dekanat.rest_api.service.services.impl;
 
 import kg.kgiai.dekanat.rest_api.model.Subject;
 import kg.kgiai.dekanat.rest_api.repository.SubjectRepository;
+import kg.kgiai.dekanat.rest_api.service.services.AbstractService;
 import kg.kgiai.dekanat.rest_api.service.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
+import sun.reflect.generics.repository.AbstractRepository;
 
 import java.util.List;
 
 @Service
-public class SubjectServiceImpl implements SubjectService {
+public class SubjectServiceImpl extends AbstractService<Subject, Integer> implements SubjectService {
 
     @Autowired
-    private SubjectRepository subjectRepository;
-
-    @Override
-    public List<Subject> getAll() {
-        return subjectRepository.findAll();
-    }
-
-    @Override
-    public Subject getById(Integer id) {
-        return subjectRepository.findOne(id);
+    public SubjectServiceImpl(JpaRepository<Subject, Integer> repository) {
+        super(repository);
     }
 
     @Override
     public Subject getByName(String name) {
-        return subjectRepository.findByName(name);
-    }
-
-    @Override
-    public void save(Subject object) {
-        subjectRepository.save(object);
-    }
-
-    @Override
-    public void save(Iterable<Subject> iterable) {
-        subjectRepository.save(iterable);
-    }
-
-    @Override
-    public void delete(Iterable<Subject> iterable) {
-        subjectRepository.delete(iterable);
-    }
-
-    @Override
-    public void delete(Integer id) {
-        subjectRepository.delete(id);
+        return ((SubjectRepository)repository).findByName(name);
     }
 }

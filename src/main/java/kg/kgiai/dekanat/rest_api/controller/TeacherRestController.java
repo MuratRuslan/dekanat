@@ -10,10 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("teachers")
 @CrossOrigin(value = "http://localhost:4200")
-public class TeacherController extends AbstractController<Teacher, Long>{
+public class TeacherRestController extends AbstractRestController<Teacher, Long> {
 
     @Autowired
-    public TeacherController(Service<Teacher, Long> service) {
+    public TeacherRestController(Service<Teacher, Long> service) {
         super(service);
     }
 }

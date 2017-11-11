@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("groups")
 @CrossOrigin(value = "http://localhost:4200")
-public class GroupController extends AbstractController<Gruppa, Long> {
+public class GroupRestController extends AbstractRestController<Gruppa, Long> {
 
     @Autowired
-    public GroupController(Service<Gruppa, Long> service) {
+    public GroupRestController(Service<Gruppa, Long> service) {
         super(service);
     }
 }

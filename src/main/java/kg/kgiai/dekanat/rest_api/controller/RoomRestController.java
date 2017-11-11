@@ -1,6 +1,6 @@
 package kg.kgiai.dekanat.rest_api.controller;
 
-import kg.kgiai.dekanat.rest_api.model.Subject;
+import kg.kgiai.dekanat.rest_api.model.Room;
 import kg.kgiai.dekanat.rest_api.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("subjects")
+@RequestMapping("rooms")
 @CrossOrigin(value = "http://localhost:4200")
-public class SubjectController extends AbstractController<Subject, Integer> {
+public class RoomRestController extends AbstractRestController<Room, Integer> {
 
     @Autowired
-    public SubjectController(Service<Subject, Integer> service) {
+    public RoomRestController(Service<Room, Integer> service) {
         super(service);
     }
 }

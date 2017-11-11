@@ -14,7 +14,6 @@ public class Teacher {
     @Embedded
     private PersonInfo personInfo;
 
-    @JsonIgnore
     @ManyToMany
     @JoinTable(name = "Subject_Teacher", joinColumns =
     @JoinColumn(name = "subject_id", referencedColumnName = "id"),
