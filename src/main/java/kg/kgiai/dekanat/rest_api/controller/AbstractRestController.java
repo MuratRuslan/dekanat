@@ -19,7 +19,7 @@ public abstract class AbstractRestController<M, ID> {
     @GetMapping
     public ResponseEntity<List<M>> getAll() {
         List<M> models = service.getAll();
-        if( models.isEmpty()) {
+        if (models.isEmpty()) {
             return new ResponseEntity(HttpStatus.NO_CONTENT);
         }
         return new ResponseEntity<List<M>>(models, HttpStatus.OK);
@@ -35,8 +35,12 @@ public abstract class AbstractRestController<M, ID> {
     }
 
     @PostMapping
-    public void save(@RequestBody List<M> models) {
+    public ResponseEntity<M> save(@RequestBody List<M> models) {
+        if (models == null) {
+            return new ResponseEntity(new Exception("not found"), HttpStatus.BAD_REQUEST);
+        }
         service.save(models);
+        return new ResponseEntity<M>(models.get(0), HttpStatus.OK);
     }
 
     @PutMapping

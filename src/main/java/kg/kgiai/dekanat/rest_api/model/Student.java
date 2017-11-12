@@ -9,8 +9,9 @@ public class Student {
     @Column(name = "id")
     @GeneratedValue
     private Long id;
-    @Embedded
-    private PersonInfo personInfo;
+    private String name;
+    private String surname;
+    private String middleName;
     @ManyToOne()
     @JoinColumn(name = "group_id")
     private Gruppa gruppa;
@@ -27,29 +28,27 @@ public class Student {
     }
 
     public String getName() {
-        return personInfo.getName();
+        return name;
     }
 
     public void setName(String name) {
-        personInfo.setName(name);
+        this.name = name;
     }
 
-
     public String getSurname() {
-        return personInfo.getSurname();
+        return surname;
     }
 
     public void setSurname(String surname) {
-        personInfo.setSurname(surname);
+        this.surname = surname;
     }
 
-
     public String getMiddleName() {
-        return personInfo.getMiddleName();
+        return middleName;
     }
 
     public void setMiddleName(String middleName) {
-        personInfo.setMiddleName(middleName);
+        this.middleName = middleName;
     }
 
     public Gruppa getGruppa() {

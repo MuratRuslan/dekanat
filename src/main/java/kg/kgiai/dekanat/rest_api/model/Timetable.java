@@ -1,5 +1,7 @@
 package kg.kgiai.dekanat.rest_api.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +31,7 @@ public class Timetable {
     private Gruppa gruppa;
 
     @Temporal(TemporalType.TIME)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "HH:mm:ss")
     private Date time;
 
     public Long getId() {

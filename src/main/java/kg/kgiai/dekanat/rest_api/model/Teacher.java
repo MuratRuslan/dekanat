@@ -1,18 +1,23 @@
 package kg.kgiai.dekanat.rest_api.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class Teacher {
 
     @Id
     @GeneratedValue
     private Long id;
-    @Embedded
-    private PersonInfo personInfo;
+    private String name;
+    private String surname;
+    private String middleName;
+//    @Embedded
+//    private PersonInfo personInfo;
 
     @ManyToMany
     @JoinTable(name = "Subject_Teacher", joinColumns =
@@ -38,29 +43,27 @@ public class Teacher {
     }
 
     public String getName() {
-        return personInfo.getName();
+        return name;
     }
 
     public void setName(String name) {
-        personInfo.setName(name);
+        this.name = name;
     }
 
-
     public String getSurname() {
-        return personInfo.getSurname();
+        return surname;
     }
 
     public void setSurname(String surname) {
-        personInfo.setSurname(surname);
+        this.surname = surname;
     }
 
-
     public String getMiddleName() {
-        return personInfo.getMiddleName();
+        return middleName;
     }
 
     public void setMiddleName(String middleName) {
-        personInfo.setMiddleName(middleName);
+        this.middleName = middleName;
     }
 
     @Override
