@@ -1,10 +1,7 @@
 package kg.kgiai.dekanat.rest_api.model;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,6 +9,7 @@ public class Subject {
 
     @Id
     @Column(name = "id")
+    @GeneratedValue
     private Integer id;
     @Column(name = "name")
     private String name;

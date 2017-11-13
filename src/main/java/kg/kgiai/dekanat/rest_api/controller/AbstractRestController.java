@@ -37,17 +37,12 @@ public abstract class AbstractRestController<M, ID> {
     }
 
     @PostMapping
-    public ResponseEntity<M> save(@RequestBody List<M> models) {
+    public ResponseEntity save(@RequestBody List<M> models) {
         if (models == null) {
-            return new ResponseEntity(new Exception("not found"), HttpStatus.BAD_REQUEST);
-        }
-        if(models.get(0) instanceof Timetable) {
-            System.out.println("instance of Timetable");
-            Timetable les = (Timetable) models.get(0);
-            les.setTime(new Date(les.getTime().getTime() - 21600 * 1000));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Ошибка целостности данных!");
         }
         service.save(models);
-        return new ResponseEntity<M>(models.get(0), HttpStatus.OK);
+        return ResponseEntity.status(HttpStatus.OK).body("Успешно добавлен!");
     }
 //    @PostMapping
 //    public void save(@RequestBody String body) {
