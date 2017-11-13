@@ -16,6 +16,9 @@ public class Subject {
     @Column(name = "name")
     private String name;
 
+    @ManyToMany(mappedBy = "subjects")
+    private List<Teacher> teachers;
+
     public Subject() {
     }
 
@@ -42,6 +45,14 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
     @Override
