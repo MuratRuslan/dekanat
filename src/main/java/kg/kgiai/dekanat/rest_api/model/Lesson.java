@@ -15,6 +15,8 @@ public class Lesson {
 
     private String day;
 
+    private boolean denominator = false;
+
     @ManyToOne()
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
@@ -47,6 +49,14 @@ public class Lesson {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public boolean isDenominator() {
+        return denominator;
+    }
+
+    public void setDenominator(boolean denominator) {
+        this.denominator = denominator;
     }
 
     public String getDay() {

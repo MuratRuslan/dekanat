@@ -36,6 +36,10 @@ public class LessonServiceImpl extends AbstractService<Lesson, Long> implements 
     public boolean isAcceptable(Lesson lesson) {
         List<Lesson> all = ((LessonRepository) repository).findByDayAndTime(lesson.getDay(), lesson.getTime());
         for(Lesson current : getLessonsContainingTeachers(all, lesson.getTeachers())) {
+            if(current.getGruppa().getId().equals(lesson.getGruppa().getId())
+                    && lesson.isDenominator() != current.isDenominator()) {
+                continue;
+            }
             if(!current.getGruppa().getStartYear().equals(lesson.getGruppa().getStartYear())){
                 return false;
             }
@@ -44,7 +48,11 @@ public class LessonServiceImpl extends AbstractService<Lesson, Long> implements 
             }
         }
         for(Lesson current : getLessonsContainingRooms(all, lesson.getRooms())) {
-            if( !current.getSubject().getId().equals(lesson.getSubject().getId())) {
+            if(current.getGruppa().getId().equals(lesson.getGruppa().getId())
+                    && lesson.isDenominator() != current.isDenominator()) {
+                continue;
+            }
+            if(!current.getSubject().getId().equals(lesson.getSubject().getId())) {
                 return false;
             }
         }
