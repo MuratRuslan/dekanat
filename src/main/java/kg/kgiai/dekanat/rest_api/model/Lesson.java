@@ -7,7 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-public class Timetable {
+public class Lesson {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -18,6 +18,13 @@ public class Timetable {
     @ManyToOne()
     @JoinColumn(name = "subject_id", referencedColumnName = "id")
     private Subject subject;
+
+    @ManyToMany
+    @JoinTable(name = "lesson_teacher", joinColumns =
+    @JoinColumn(name = "lesson_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    private List<Teacher> teachers;
 
     @ManyToMany
     @JoinTable(name = "lesson_room", joinColumns =
@@ -44,6 +51,14 @@ public class Timetable {
 
     public String getDay() {
         return day;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
     public void setDay(String day) {

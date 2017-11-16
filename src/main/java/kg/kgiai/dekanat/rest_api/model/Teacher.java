@@ -19,13 +19,6 @@ public class Teacher {
 //    @Embedded
 //    private PersonInfo personInfo;
 
-    @JsonIgnore
-    @ManyToMany
-    @JoinTable(name = "Subject_Teacher", joinColumns =
-    @JoinColumn(name = "subject_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "teacher_id", referencedColumnName = "id")
-    )
-    private List<Subject> subjects;
 
     public Long getId() {
         return id;
@@ -33,14 +26,6 @@ public class Teacher {
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public List<Subject> getSubjects() {
-        return subjects;
-    }
-
-    public void setSubjects(List<Subject> subjects) {
-        this.subjects = subjects;
     }
 
     public String getName() {

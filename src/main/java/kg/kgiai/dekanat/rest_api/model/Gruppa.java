@@ -15,6 +15,7 @@ public class Gruppa {
     private Long id;
     @Column(nullable = false, unique = true)
     private String name;
+    private Integer startYear;
     public Gruppa(){}
 
     public Gruppa(Long id, String name) {
@@ -36,6 +37,14 @@ public class Gruppa {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getStartYear() {
+        return startYear;
+    }
+
+    public void setStartYear(Integer startYear) {
+        this.startYear = startYear;
     }
 
     @Override

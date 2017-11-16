@@ -1,13 +1,11 @@
 package kg.kgiai.dekanat.rest_api.controller;
 
-import kg.kgiai.dekanat.rest_api.model.Timetable;
 import kg.kgiai.dekanat.rest_api.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
 import java.util.List;
 
 public abstract class AbstractRestController<M, ID> {
@@ -55,7 +53,8 @@ public abstract class AbstractRestController<M, ID> {
     }
 
     @DeleteMapping("/{id}")
-    public void delete(@PathVariable ID id) {
+    public ResponseEntity delete(@PathVariable ID id) {
         service.delete(id);
+        return ResponseEntity.ok("Успешно удален!");
     }
 }
