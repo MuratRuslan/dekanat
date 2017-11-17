@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.NotSupportedException;
+import java.util.List;
 
 @Service
 public class StudentServiceImpl extends AbstractService<Student, Long> implements StudentService {
@@ -21,5 +22,10 @@ public class StudentServiceImpl extends AbstractService<Student, Long> implement
     @Override
     public Student getByName(String name) throws NotSupportedException {
         throw new NotSupportedException();
+    }
+
+    @Override
+    public List<Student> getAllByGroupId(Long groupId) {
+        return ((StudentRepository)repository).findByGruppaId(groupId);
     }
 }
