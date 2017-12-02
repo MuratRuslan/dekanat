@@ -7,9 +7,6 @@ import kg.kgiai.dekanat.rest_api.service.services.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
-import sun.reflect.generics.repository.AbstractRepository;
-
-import java.util.List;
 
 @Service
 public class SubjectServiceImpl extends AbstractService<Subject, Integer> implements SubjectService {

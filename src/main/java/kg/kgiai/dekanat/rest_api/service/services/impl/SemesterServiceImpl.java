@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.NotSupportedException;
-import java.util.List;
 
 @Service
 public class SemesterServiceImpl extends AbstractService<Semester, Long> implements SemesterService {

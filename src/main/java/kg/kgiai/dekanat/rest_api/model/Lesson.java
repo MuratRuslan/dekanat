@@ -35,6 +35,8 @@ public class Lesson {
     )
     private List<Room> rooms;
 
+    private String type = "ЛК";
+
     @ManyToOne
     @JoinColumn(name = "group_id", referencedColumnName = "id")
     private Gruppa gruppa;
@@ -105,5 +107,13 @@ public class Lesson {
 
     public void setRooms(List<Room> rooms) {
         this.rooms = rooms;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

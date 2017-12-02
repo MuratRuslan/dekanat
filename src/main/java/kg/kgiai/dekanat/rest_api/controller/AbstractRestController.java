@@ -54,7 +54,11 @@ public abstract class AbstractRestController<M, ID> {
 
     @DeleteMapping("/{id}")
     public ResponseEntity delete(@PathVariable ID id) {
-        service.delete(id);
-        return ResponseEntity.ok("Успешно удален!");
+        try {
+            service.delete(id);
+            return ResponseEntity.ok("Успешно удален!");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CONFLICT).body("Ошибка удаления");
+        }
     }
 }

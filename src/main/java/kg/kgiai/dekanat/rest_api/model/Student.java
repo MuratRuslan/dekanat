@@ -16,7 +16,7 @@ public class Student {
     @JoinColumn(name = "group_id")
     private Gruppa gruppa;
 
-    @OneToMany(mappedBy = "student")
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
     private List<Mark> marks;
 
     public Long getId() {

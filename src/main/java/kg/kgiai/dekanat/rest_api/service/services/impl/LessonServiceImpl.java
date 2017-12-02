@@ -35,18 +35,17 @@ public class LessonServiceImpl extends AbstractService<Lesson, Long> implements 
     @Override
     public boolean isAcceptable(Lesson lesson) {
         List<Lesson> all = ((LessonRepository) repository).findByDayAndTime(lesson.getDay(), lesson.getTime());
-        for(Lesson current : getLessonsContainingTeachers(all, lesson.getTeachers())) {
-            if(current.getGruppa().getId().equals(lesson.getGruppa().getId())
-                    && lesson.isDenominator() != current.isDenominator()) {
-                continue;
-            }
-            if(!current.getGruppa().getStartYear().equals(lesson.getGruppa().getStartYear())){
-                return false;
-            }
-            if(!current.getSubject().getId().equals(lesson.getSubject().getId())) {
-                return false;
-            }
+        return teacherValid(lesson, all) && roomValid(lesson, all);
+    }
+
+    private boolean lessonTypeValid(Lesson lesson, List<Lesson> all) {
+        for(Lesson current : getLessonsContainingRooms(all, lesson.getRooms())) {
+
         }
+        return true;
+    }
+
+    private boolean roomValid(Lesson lesson, List<Lesson> all) {
         for(Lesson current : getLessonsContainingRooms(all, lesson.getRooms())) {
             if(current.getGruppa().getId().equals(lesson.getGruppa().getId())
                     && lesson.isDenominator() != current.isDenominator()) {
@@ -59,9 +58,21 @@ public class LessonServiceImpl extends AbstractService<Lesson, Long> implements 
         return true;
     }
 
-    private boolean checkedTeacher(Lesson lesson, Lesson current) {
-        for(Teacher teacher : current.getTeachers()) {
-
+    private boolean teacherValid(Lesson lesson, List<Lesson> all) {
+        for(Lesson current : getLessonsContainingTeachers(all, lesson.getTeachers())) {
+            if(current.getGruppa().getId().equals(lesson.getGruppa().getId())
+                    && lesson.isDenominator() != current.isDenominator()) {
+                continue;
+            }
+            if(!current.getGruppa().getStartYear().equals(lesson.getGruppa().getStartYear())){
+                return false;
+            }
+            if(!current.getSubject().getId().equals(lesson.getSubject().getId())) {
+                return false;
+            }
+            if(current.getType().equals("ПР")) {
+                return false;
+            }
         }
         return true;
     }
