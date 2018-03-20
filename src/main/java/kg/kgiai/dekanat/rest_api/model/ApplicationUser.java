@@ -3,7 +3,7 @@ package kg.kgiai.dekanat.rest_api.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "userinfo")
 public class ApplicationUser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

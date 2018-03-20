@@ -1,19 +1,23 @@
 package kg.kgiai.dekanat.rest_api.model;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import kg.kgiai.dekanat.rest_api.json.custom.CustomMarkDeserializer;
+import kg.kgiai.dekanat.rest_api.json.custom.CustomMarkSerializer;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Mark {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    @JsonIgnore
     @ManyToOne()
+    @JsonSerialize(using = CustomMarkSerializer.class)
+    @JsonDeserialize(using = CustomMarkDeserializer.class)
     @JoinColumn(name = "student_id")
     private Student student;
     @ManyToOne()
@@ -22,8 +26,10 @@ public class Mark {
     @ManyToOne()
     @JoinColumn(name = "semester_id")
     private Semester semester;
-    @Column
-    private Float mark;
+    @ElementCollection
+    @CollectionTable(name = "mark_attempts", joinColumns = @JoinColumn(name = "mark_id"))
+    @Column(name = "mark")
+    private List<Float> marks;
 
     public Long getId() {
         return id;
@@ -57,11 +63,12 @@ public class Mark {
         this.semester = semester;
     }
 
-    public Float getMark() {
-        return mark;
+    public List<Float> getMarks() {
+        return marks;
     }
 
-    public void setMark(Float mark) {
-        this.mark = mark;
+    public void setMarks(List<Float> mark) {
+        this.marks = mark;
     }
+
 }

@@ -38,18 +38,14 @@ public class LessonServiceImpl extends AbstractService<Lesson, Long> implements 
         return teacherValid(lesson, all) && roomValid(lesson, all);
     }
 
-    private boolean lessonTypeValid(Lesson lesson, List<Lesson> all) {
-        for(Lesson current : getLessonsContainingRooms(all, lesson.getRooms())) {
-
-        }
-        return true;
-    }
-
     private boolean roomValid(Lesson lesson, List<Lesson> all) {
         for(Lesson current : getLessonsContainingRooms(all, lesson.getRooms())) {
             if(current.getGruppa().getId().equals(lesson.getGruppa().getId())
                     && lesson.isDenominator() != current.isDenominator()) {
                 continue;
+            }
+            if(!current.getGruppa().getStartYear().equals(lesson.getGruppa().getStartYear()) && containsRooms(lesson, current)) {
+                return false;
             }
             if(!current.getSubject().getId().equals(lesson.getSubject().getId())) {
                 return false;
@@ -91,6 +87,15 @@ public class LessonServiceImpl extends AbstractService<Lesson, Long> implements 
             if(current.getId().equals(room.getId())) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean containsRooms(Lesson lesson, Lesson currentLesson) {
+        for(Room room : lesson.getRooms()) {
+             if(containsRoom(currentLesson, room)) {
+                 return true;
+             }
         }
         return false;
     }
