@@ -21,4 +21,28 @@ public class DekanatApplication {
 		BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 		System.out.println(bCryptPasswordEncoder.encode("ANONYMOUS"));
 	}
+
+	class A {
+		public void smfdkj(int number) {
+			number = 5;
+			System.out.println("dkslfj");
+			if(number == 0) {
+				System.out.println("oiewjiof");
+			}
+			if(number == 0) {
+				System.out.println("owiefjoewifj");
+			}
+		}
+
+		public void Dfew(int number) {
+			number = 5;
+			System.out.println("dkslfj");
+			if(number == 0) {
+				System.out.println("oiewjiof");
+			}
+			if(number == 0) {
+				System.out.println("owiefjoewifj");
+			}
+		}
+	}
 }
